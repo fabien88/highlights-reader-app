@@ -1,0 +1,12 @@
+.thumbnail {
+  min-height: 100px;
+  height: 100px;
+  background: white;
+  min-width: 70px;
+  padding: 5px;
+}
+
+.emptyThumbnail {
+  @extend .thumbnail;
+  border: 1px dashed gray;
+}

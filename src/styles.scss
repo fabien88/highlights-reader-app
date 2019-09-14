@@ -1,0 +1,19 @@
+@import "./variables.scss";
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+.App {
+  font-family: sans-serif;
+  text-align: left;
+  display: flex;
+  height: 100vh;
+}
+
+.view {
+  height: calc(100% - #{$bannerHeight});
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
