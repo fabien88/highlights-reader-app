@@ -9,6 +9,8 @@ import Snackbar from "../Elements/SnackBar";
 import Section from "./Section";
 import { downloadThumbnail } from "../Highlights/thumbnail-downloader";
 
+const uuidv1 = require('uuid/v1');
+
 const shuffleArray = arr =>
   arr
     .map(a => [Math.random(), a])
@@ -71,9 +73,11 @@ const ImportSection = ({
     var files = event.target.files;
     var file = files[0];
     var reader = new FileReader();
-    reader.addEventListener("load", function(event) {
+    reader.addEventListener("load", function (event) {
       var text = event.target.result;
-      const clippings = parseClippings(text);
+      const clippings = parseClippings(text).map(
+        ({title, author, loc, ...clipping}) => ({ title, author, loc, ...clipping, id: `${title}.${loc}` })
+        );
       const books = computeBookList(clippings);
       const randomClippings = shuffleArray(clippings);
 

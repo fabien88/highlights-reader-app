@@ -1,10 +1,16 @@
 import React, { Component } from "react";
 import Thumbnail from "./Thumbnail";
 import "./Clipping.scss";
-
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 const Card = ({ children }) => <div className="clipping">{children}</div>;
 const Header = ({ children }) => <div className="header">{children}</div>;
 const Title = ({ children }) => <span className="title">{children}</span>;
+const Favorite = ({ children, active, onClick }) => <span onClick={onClick} className="favorite">
+  {active ? <FavoriteIcon style={{ color: 'darkred' }} /> :
+    <FavoriteBorderIcon style={{ color: 'darkred' }} />
+  }
+</span>;
 const Author = ({ children }) => <span className="author">by {children}</span>;
 
 const Separator = () => <div className="separator" />;
@@ -24,12 +30,15 @@ class Clipping extends Component {
 
   render() {
     const {
+      id,
       thumbnailUrl,
       showThumbnail,
       title,
       authors,
       content,
-      loc
+      loc,
+      toggleFavorite,
+      isInFavorite,
     } = this.props;
     return (
       <Card>
@@ -43,6 +52,7 @@ class Clipping extends Component {
             {title}
             <Author>{authors[0]}</Author>
           </Title>
+          <Favorite active={isInFavorite} onClick={(() => toggleFavorite(id))} />
           <Separator />
         </Header>
         <Content>

@@ -24,7 +24,7 @@ const Navigation = ({ currentView, setCurrentView }) => (
     />
     <BottomNavigationAction
       label="Favoris"
-      value="favorite"
+      value="favorites"
       icon={<FavoriteIcon />}
     />
     <BottomNavigationAction

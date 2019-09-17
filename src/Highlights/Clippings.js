@@ -11,29 +11,52 @@ const Clippings = ({
   currentIndex,
   randomClippings,
   onChangeIndex,
-  settings
+  settings,
+  toggleFavorite,
+  favorites,
+  showOnlyFavorites
 }) => {
   const { books, randomSeed = 0 } = settings;
+  const favoriteFilter = ({ id }) => {
+    return !!favorites[id];
+  }
   const clippingsToShow = randomClippings.filter(
     ({ title }) => books[title].show
-  );
+  ).filter(showOnlyFavorites ? favoriteFilter : () => true)
+
+
+  if (clippingsToShow.length === 0) {
+    return <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100%',
+
+    }}>
+      <div style={{
+        margin: 100,
+        textAlign: 'center'
+      }}>
+        Aucun surlignements trouvés, allez dans la section réglages pour en importer
+        </div></div >
+  }
 
   const slideRenderer = ({ key, index }) => {
     if (index < 0 || index > clippingsToShow.length - 1) {
       return null
     }
-    const { title, authors, content, loc } = clippingsToShow[index];
-
+    const { title, authors, content, loc, id } = clippingsToShow[index];
     return (
       <Clipping
-        id={index}
-        key={index}
-        //showThumbnail={shouldLoadThumbnail(index, currentIndex)}
+        id={id}
+        key={id}
         thumbnailUrl={thumbnails[title + "->" + authors[0]]}
         title={title}
         authors={authors}
         content={content}
         loc={loc}
+        toggleFavorite={toggleFavorite}
+        isInFavorite={favorites[id]}
       />
     )
   };

@@ -6,6 +6,8 @@ import ResetSection from "./ResetSection";
 import ShowBooksSection from "./ShowBooksSection";
 import ShuffleClippings from "./ShuffleClippings";
 import { downloadThumbnail } from "../Highlights/thumbnail-downloader";
+import ReloadAppButton from './ReloadAppButton';
+const versionNumber = "1.0.8";
 
 const defaultState = {
   isShowUploadSuccessfull: false
@@ -47,7 +49,12 @@ const Settings = ({
         setSettings={setSettings}
         thumbnails={thumbnails}
       />
+      <ReloadAppButton />
       <ResetSection resetState={resetState} />
+
+      <div>
+        version {versionNumber}
+      </div>
     </div>
   );
 };
