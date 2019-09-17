@@ -7,7 +7,7 @@ import ShowBooksSection from "./ShowBooksSection";
 import ShuffleClippings from "./ShuffleClippings";
 import { downloadThumbnail } from "../Highlights/thumbnail-downloader";
 import ReloadAppButton from './ReloadAppButton';
-const versionNumber = "1.0.8";
+const versionNumber = "1.1.3";
 
 const defaultState = {
   isShowUploadSuccessfull: false
@@ -36,6 +36,9 @@ const Settings = ({
   return (
     <div className="settings">
       <h1>Réglages</h1>
+      <div>
+        version {versionNumber}
+      </div>
       <ImportSection
         settings={settings}
         setState={setState}
@@ -43,18 +46,16 @@ const Settings = ({
         updateThumbnails={updateThumbnails}
         thumbnails={thumbnails}
       />
+      <ReloadAppButton />
       <ShuffleClippings clippings={clippings} setState={setState} />
       <ShowBooksSection
         books={books}
         setSettings={setSettings}
         thumbnails={thumbnails}
       />
-      <ReloadAppButton />
       <ResetSection resetState={resetState} />
 
-      <div>
-        version {versionNumber}
-      </div>
+      
     </div>
   );
 };

@@ -1,19 +1,25 @@
 @import "./variables.scss";
 
-body {
+body,
+html {
   margin: 0;
   padding: 0;
-  height: 100%;
+  position: fixed;
+  // max-width: 100vw; 
+  height: 100%
 }
+
 .App {
   font-family: sans-serif;
   text-align: left;
   display: flex;
   height: 100vh;
+
 }
 
 .view {
-  height: calc(100% - #{$bannerHeight});
-  overflow: auto;
+  max-width: 100vw; 
+  height: calc(100% - #{$bannerHeight} - 30px);
+  overflow: hidden;
   -webkit-overflow-scrolling: touch;
 }
